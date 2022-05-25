@@ -29,7 +29,12 @@ function comprarEntrada(film) {
     }
 }
 
-const filmList = ["Spiderman", "Animales fantásticos", "Batman", "El hombre del Norte"];
+const spiderman = { name: "Spiderman", year: 2021, genre: "Acción", duration: 148}
+const animalesFantasticos = {name: "Animales fantásticos", year: 2022, genre: "Fantasía", duration: 142}
+const batman = {name: "Batman", year: 2022, genre: "Acción", duration: 175}
+const drStrange = {name: "Dr Strange en el multiverso de la locura", year: 2022, genre: "Acción - Fantasía", duration: 126}
+
+const filmList = [spiderman.name, animalesFantasticos.name, batman.name, drStrange.name];
 let userAge = parseInt(prompt('Bienvenido a Cinema JS. Por favor ingrese su edad'));
 
 if (userAge >= 18) {
@@ -57,4 +62,4 @@ if (userAge >= 18) {
 
 } else {
     alert('Pide a un adulto que compre la entrada');
-} 
+}
