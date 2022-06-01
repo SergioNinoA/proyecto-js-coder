@@ -52,14 +52,14 @@ if (userAge >= 18) {
     document.body.appendChild(text);
 }
 
-let btnComprar = document.getElementById('btnComprar');
-
-btnComprar.addEventListener('click', comprarEntradas);
-
 let rFilm1 = document.getElementById('rFilm1');
 let rFilm2 = document.getElementById('rFilm2');
 let rFilm3 = document.getElementById('rFilm3');
 let rFilm4 = document.getElementById('rFilm4');
+
+let btnComprar = document.getElementById('btnComprar');
+
+btnComprar.addEventListener('click', comprarEntradas);
 
 function comprarEntradas() {
     if (rFilm1.checked) {
