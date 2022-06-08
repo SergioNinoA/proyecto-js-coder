@@ -62,23 +62,28 @@ let btnComprar = document.getElementById('btnComprar');
 btnComprar.addEventListener('click', comprarEntradas);
 
 function comprarEntradas() {
-    if (rFilm1.checked) {
-        cantidadEntradas = parseInt(document.getElementById('numEntradas').value);
-        multiplicar(valorEntrada, cantidadEntradas);
-        alert(`La compra de ${cantidadEntradas} entradas para ${film1.name} se realizó correctamente. El valor total de la compra es de ${resultado}`);
-    } else if (rFilm2.checked) {
-        cantidadEntradas = parseInt(document.getElementById('numEntradas').value);
-        multiplicar(valorEntrada, cantidadEntradas);
-        alert(`La compra de ${cantidadEntradas} entradas para ${film2.name} se realizó correctamente. El valor total de la compra es de ${resultado}`);
-    } else if (rFilm3.checked) {
-        cantidadEntradas = parseInt(document.getElementById('numEntradas').value);
-        multiplicar(valorEntrada, cantidadEntradas);
-        alert(`La compra de ${cantidadEntradas} entradas para ${film3.name} se realizó correctamente. El valor total de la compra es de ${resultado}`);
-    } else if (rFilm4.checked) {
-        cantidadEntradas = parseInt(document.getElementById('numEntradas').value);
-        multiplicar(valorEntrada, cantidadEntradas);
-        alert(`La compra de ${cantidadEntradas} entradas para ${film4.name} se realizó correctamente. El valor total de la compra es de ${resultado}`);
-    } else {
-        alert('Por favor seleccione una película');
-    }
+    if (cantidadEntradas = (parseInt(document.getElementById('numEntradas').value))>0){
+        if (rFilm1.checked) {
+            cantidadEntradas = parseInt(document.getElementById('numEntradas').value);
+            multiplicar(valorEntrada, cantidadEntradas);
+            alert(`La compra de ${cantidadEntradas} entradas para ${film1.name} se realizó correctamente. El valor total de la compra es de ${resultado}`);
+        } else if (rFilm2.checked) {
+            cantidadEntradas = parseInt(document.getElementById('numEntradas').value);
+            multiplicar(valorEntrada, cantidadEntradas);
+            alert(`La compra de ${cantidadEntradas} entradas para ${film2.name} se realizó correctamente. El valor total de la compra es de ${resultado}`);
+        } else if (rFilm3.checked) {
+            cantidadEntradas = parseInt(document.getElementById('numEntradas').value);
+            multiplicar(valorEntrada, cantidadEntradas);
+            alert(`La compra de ${cantidadEntradas} entradas para ${film3.name} se realizó correctamente. El valor total de la compra es de ${resultado}`);
+        } else if (rFilm4.checked) {
+            cantidadEntradas = parseInt(document.getElementById('numEntradas').value);
+            multiplicar(valorEntrada, cantidadEntradas);
+            alert(`La compra de ${cantidadEntradas} entradas para ${film4.name} se realizó correctamente. El valor total de la compra es de ${resultado}`);
+        } else {
+            alert('Por favor seleccione una película');
+        }
+    } else {alert('Por favor seleccione la cantidad de entradas');}
 }
+
+
+//valorar que se pueda guardar la edad, datos de usuario como nombre. Crear una función que pueda hacer una comprobación de la película seleccionada y envíe la información de regreso para que la compare con el array para extraer la película elegida
