@@ -1,10 +1,8 @@
-
 let valorEntrada = 1000;
 
 function multiplicar(valor, cantidad) {
     resultado = valor * cantidad
 }
-
 class film {
     constructor( name, year, genre, duration){
         this.name = name;
@@ -13,58 +11,33 @@ class film {
         this.duration = duration;
     }
 }
-
-//const film# = new film (name, year, genre, duration in minutes)
 const film1 = new film ("Spiderman", 2021, "Acción", 148);
 const film2 = new film ("Animales fantásticos", 2022, "Fantasía", 142);
 const film3 = new film ("Batman", 2022, "Acción", 175 );
 const film4 = new film ("Dr. Strange en el multiverso de la locura",2022,"Acción - Fantasía", 126);
 
-const userDate = document.getElementById("userDate");
-const age = document.getElementById("age");
+let userAge = parseInt(prompt('Bienvenid@ a Cinema JS. Por favor ingrese su edad'));
 
-const calcularEdad = (userDate) => {
-    const today = new Date();
-    const currentYear = parseInt(today.getFullYear());
-    const currentMonth = parseInt(today.getMonth()) + 1;
-    const currentDay = parseInt(today.getDate());
-
-    const yearOfBirth = parseInt(String(userDate).substring(0, 4));
-    const monthOfBirth = parseInt(String(userDate).substring(5, 7));
-    const dayOfBirth = parseInt(String(userDate).substring(8, 10));
-
-    let age = currentYear-yearOfBirth;
-    if (currentMonth < monthOfBirth) {
-        age--;
-    } else if (currentMonth === monthOfBirth){
-        if (currentDay < dayOfBirth) {
-            age--;
-        }
-    }
-    return age;
-}
-
-window.addEventListener('load', function (){
-    userDate.addEventListener('change', function(){
-        if(this.value){
-            age.innerText = `¿Tu edad es de ${calcularEdad(this.value)} años?`
-        }
-    })
-});
-
-let rFilm1 = document.getElementById('rFilm1');
-let rFilm2 = document.getElementById('rFilm2');
-let rFilm3 = document.getElementById('rFilm3');
-let rFilm4 = document.getElementById('rFilm4');
-
-
-if (age >= 18) {
-    document.getElementById('rFilm1').innerText = `${film1.name}`;
-    rFilm1.innerText = `${film1.name}`;
-    rFilm2.innerText = `${film2.name}`;
-    rFilm3.innerText = `${film3.name}`;
-    rFilm4.innerText = `${film4.name}`;
-    
+if (userAge >= 18) {
+    let text = document.createElement('div');
+    text.className = 'text';
+    text.innerHTML= `
+    <h2>Compra tus entradas</h2>
+    <p>Elige la película de tu prefencia. Las películas disponibles son:</p>
+    <form>
+        <ol>
+            <li class="peliculas"><input type="radio" name="film_list" id="rFilm1"><label for="rFilm1">${film1.name}</label></li>
+            <li class="peliculas"><input type="radio" name="film_list" id="rFilm2"><label for="rFilm2">${film2.name}</label></li>
+            <li class="peliculas"><input type="radio" name="film_list" id="rFilm3"><label for="rFilm3">${film3.name}</label></li>
+            <li class="peliculas"><input type="radio" name="film_list" id="rFilm4"><label for="rFilm4">${film4.name}</label></li>
+        </ol>
+        <p>El valor de la localidad es de ${valorEntrada}.</p>
+        <p>Indique la cantidad de entradas a comprar:</p>
+        <input type="number" name="cantidad_entradas" id="numEntradas" min="1">
+        <button type="button" id="btnComprar">Comprar</button>
+    </form>     
+    `;
+    document.body.appendChild(text);
 } else {
     let text = document.createElement('div');
     text.className = 'text';
@@ -74,38 +47,60 @@ if (age >= 18) {
     `;
     document.body.appendChild(text);
 }
-/*
+let rFilm1 = document.getElementById('rFilm1');
+let rFilm2 = document.getElementById('rFilm2');
+let rFilm3 = document.getElementById('rFilm3');
+let rFilm4 = document.getElementById('rFilm4');
 
-
+let cantidadEntradas = (parseInt(document.getElementById('numEntradas').value));
 let btnComprar = document.getElementById('btnComprar');
+
+function anunciarCompra (nombreFilm) {
+    cantidadEntradas = (parseInt(document.getElementById('numEntradas').value));
+    multiplicar(valorEntrada, cantidadEntradas);
+    Swal.fire({
+        text: `El valor total es de ${resultado}. ¿Desea confirmar la compra?`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Sí',
+        cancelButtonText: 'No'
+    }).then((result)=>{
+        if(result.isConfirmed){                    
+            Swal.fire({
+                title: 'Gracias',
+                icon: 'success',
+                text: `La compra de ${cantidadEntradas} entrada(s) para "${nombreFilm}" se realizó correctamente.`
+            })
+        }
+    })
+}
 
 btnComprar.addEventListener('click', comprarEntradas);
 
-let cantidadEntradas = (parseInt(document.getElementById('numEntradas').value));
-
 function comprarEntradas() {
     if (cantidadEntradas = (parseInt(document.getElementById('numEntradas').value)) > 0){
-        if (rFilm1.checked) {  
-            cantidadEntradas = (parseInt(document.getElementById('numEntradas').value));
-            multiplicar(valorEntrada, cantidadEntradas);
-            alert(`La compra de ${cantidadEntradas} entradas para ${film1.name} se realizó correctamente. El valor total de la compra es de ${resultado}`);
+        if (rFilm1.checked) {
+            anunciarCompra(film1.name);
         } else if (rFilm2.checked) {
-            cantidadEntradas = (parseInt(document.getElementById('numEntradas').value));
-            multiplicar(valorEntrada, cantidadEntradas);
-            alert(`La compra de ${cantidadEntradas} entradas para ${film2.name} se realizó correctamente. El valor total de la compra es de ${resultado}`);
+            anunciarCompra(film2.name);
         } else if (rFilm3.checked) {
-            cantidadEntradas = (parseInt(document.getElementById('numEntradas').value));
-            multiplicar(valorEntrada, cantidadEntradas);
-            alert(`La compra de ${cantidadEntradas} entradas para ${film3.name} se realizó correctamente. El valor total de la compra es de ${resultado}`);
+            anunciarCompra(film3.name);
         } else if (rFilm4.checked) {
-            cantidadEntradas = (parseInt(document.getElementById('numEntradas').value));
-            multiplicar(valorEntrada, cantidadEntradas);
-            alert(`La compra de ${cantidadEntradas} entradas para ${film4.name} se realizó correctamente. El valor total de la compra es de ${resultado}`);
+            anunciarCompra(film4.name);
         } else {
-            alert('Por favor seleccione una película');
+            Swal.fire({
+                title: 'Atención',
+                text:'Por favor seleccione una película.',
+                icon:'info',                
+                confirmButtonText:'OK',
+            }) 
         }
-    } else {alert('Por favor seleccione la cantidad de entradas');}
-} */
-
-
-//valorar que se pueda guardar la edad, datos de usuario como nombre. Crear una función que pueda hacer una comprobación de la película seleccionada y envíe la información de regreso para que la compare con el array para extraer la película elegida
+    } else {
+        Swal.fire({
+        title: 'Atención',
+        text:'Por favor seleccione la cantidad de entradas.',
+        icon:'info',                
+        confirmButtonText:'OK',
+        })
+    }
+} 
