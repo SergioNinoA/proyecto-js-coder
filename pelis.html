@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cinema JS</title>
+</head>
+<body>
+    <header>
+        <h1>Cinema JS</h1>
+    </header>
+    <main>
+        <h2>Compra tus entradas</h2>
+        <p>Elige la película de tu prefencia. Las películas disponibles son:</p>
+        <form>
+            <ol>
+                <li class="peliculas"><input type="radio" name="film_list" id="rFilm1"><label for="rFilm1"></label></li>
+                <li class="peliculas"><input type="radio" name="film_list" id="rFilm2"><label for="rFilm2"></label></li>
+                <li class="peliculas"><input type="radio" name="film_list" id="rFilm3"><label for="rFilm3"></label></li>
+                <li class="peliculas"><input type="radio" name="film_list" id="rFilm4"><label for="rFilm4"></label></li>
+            </ol>
+            <p id="valor_entrada">El valor de la localidad es de ${valorEntrada}.</p>
+            <p>Indique la cantidad de entradas a comprar:</p>
+            <input type="number" name="cantidad_entradas" id="numEntradas" min="1">
+            <button type="button" id="btnComprar">Comprar</button>
+        </form>
+    </main>
+    <script src="./js/javascript.js"></script>
+</body>
+</html>
