@@ -1,0 +1,28 @@
+{
+    "peliculas":[
+        {
+            "name": "Spiderman",
+            "year": "2021",
+            "genre": "Acción",
+            "duration": "148"
+        },
+        {
+            "name": "Animales fantásticos",
+            "year": "2022",
+            "genre": "Fantasía",
+            "duration": "142"
+        },
+        {
+            "name": "Batman",
+            "year": "2022",
+            "genre": "Acción",
+            "duration": "175"
+        },
+        {
+            "name": "Dr. Strange en el multiverso de la locura",
+            "year": "2022",
+            "genre": "Acción - Fantasía",
+            "duration": "126"
+        }
+    ]
+}
