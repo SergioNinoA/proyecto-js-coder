@@ -5,28 +5,36 @@
             "name": "Spiderman",
             "year": "2021",
             "genre": "Acción",
-            "duration": "148"
+            "duration": "148",
+            "sinopsis": "Tras descubrirse la identidad secreta de Peter Parker como Spider-Man, la vida del joven se vuelve una locura. Peter decide pedirle ayuda al Doctor Extraño para recuperar su vida. Pero algo sale mal y provoca una fractura en el multiverso.",
+            "img": "https://pics.filmaffinity.com/Spider_Man_No_Way_Home-387287198-large.jpg"
         },
         {
             "id": "2",
             "name": "Animales fantásticos",
             "year": "2022",
             "genre": "Fantasía",
-            "duration": "142"
+            "duration": "142",
+            "sinopsis": "Ante una severa amenaza, el magizoólogo Newt Scamander lidera a un valiente grupo de magos y brujas que busca detener al malvado Gellert Grindelwald.",
+            "img": "https://es.web.img3.acsta.net/pictures/22/03/16/12/44/0138242.jpg"
         },
         {
             "id": "3",
             "name": "Batman",
             "year": "2022",
             "genre": "Acción",
-            "duration": "175"
+            "duration": "175",
+            "sinopsis": "En su segundo año luchando contra el crimen, Batman explora la corrupción existente en la ciudad de Gotham y el vínculo de esta con su propia familia. Además, entrará en conflicto con un asesino en serie conocido como 'el Acertijo'.",
+            "img": "https://pics.filmaffinity.com/The_Batman-449856406-large.jpg"
         },
         {
             "id": "4",
             "name": "Dr. Strange en el multiverso de la locura",
             "year": "2022",
             "genre": "Acción - Fantasía",
-            "duration": "126"
+            "duration": "126",
+            "sinopsis": "El Dr. Stephen Strange abre un portal al multiverso al utilizar un hechizo prohibido. Ahora, su equipo debe enfrentarse a una amenaza que podría destruirlo todo.",
+            "img": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRMcTX7_0hH2qslKSEgZ7G1guoeD0EQic8qMCAgQRO_tng1xfAP"
         }
     ]
 }

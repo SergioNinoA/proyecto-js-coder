@@ -8,7 +8,7 @@ class contacto {
     constructor(name, phone, mail) {
         this.name = name;
         this.phone = phone;
-        this.mail = mail;        
+        this.mail = mail;
     }
 }
 const contac1 = new contacto("Sucursal Centro", 15555555, "info@cinemajs.com");
@@ -21,15 +21,15 @@ const infoContacto = () => {
     <h4>Comuniquese con nosotros</h4>
     <div class="contacto_card">
         <h5>${contac1.name}</h5>
-        <p>Teléfono:${contac1.phone} - E-mail: ${contac1.mail}</p>
+        <p>Teléfono: ${contac1.phone} - E-mail: ${contac1.mail}</p>
     </div>
     <div class="contacto_card">
         <h5>${contac2.name}</h5>
-        <p>Teléfono:${contac2.phone} - E-mail: ${contac2.mail}</p>
+        <p>Teléfono: ${contac2.phone} - E-mail: ${contac2.mail}</p>
     </div>
     `;
     text.textContent;
-} 
+}
 infoContacto();
 
 var lstFilms = [
@@ -112,7 +112,7 @@ const mayor18 = () => {
         <p>El valor de la localidad es de ${valorEntrada}.</p>
         <p>Indique la cantidad de entradas a comprar:</p>
         <input type="number" name="cantidad_entradas" id="numEntradas" min="1">
-        <button type="button" id="btnComprar">Comprar</button>
+        <button type="button" id="btnComprar" class="button">Comprar</button>
         </form>
         <p> Conozca más sobre la cartelera disponible</p>
         `;
@@ -209,11 +209,29 @@ $("#btnInfo").click(() => {
             if (estado === "success") {
                 let datos_peliculas = respuesta.peliculas;
                 for (const dato of datos_peliculas) {
-                    $("#card").prepend(`<div>
-                                        <h4>${dato.name}</h4>
-                                        <p> Año de lanzamiento: ${dato.year}</p>
-                                        <p> Duración en minutos: ${dato.duration}</p>
-                                    </div>`);
+                    $("#card").prepend(`
+                    <div class="col">
+                <div class="card text-white bg-dark mb-2 h-100">                
+                    <div>
+                        <img src="${dato.img}" class="card-img-top" data-bs-toggle="modal" data-bs-target="#img${dato.id}" alt="">
+                    </div>
+                    <!-- Modal imágen ${dato.id} -->
+                    <div tabindex="-1" aria-labelledby="img${dato.id}" aria-hidden="true" class="modal fade" id="img${dato.id}">
+                        <div class="modal-dialog modal-lg modal-dialog-centered">
+                            <div class="modal-content">
+                                <img id="${dato.id}" src="${dato.img}" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">${dato.name}</h5>
+                        <p class="card-text"> Año de lanzamiento: ${dato.year}</p>
+                                        <p class="card-text"> Duración en minutos: ${dato.duration}</p>
+                        <p class="card-text italic">Descripción: "${dato.sinopsis}"</p>
+                    </div>
+                    </div>                
+                    </div>
+                                    `);
                 }
             } else {
                 console.log("Ocurrio un error inesperado, estado:" + estado);
