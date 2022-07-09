@@ -2,7 +2,7 @@ let valorEntrada = 1000;
 
 function multiplicar(valor, cantidad) {
     resultado = valor * cantidad
-}
+}//usada para obtener los valores del total de entradas al comprarlas
 
 class contacto {
     constructor(name, phone, mail) {
@@ -29,7 +29,7 @@ const infoContacto = () => {
     </div>
     `;
     text.textContent;
-}
+}//usada para generar dinamicamente el contenido del footer
 infoContacto();
 
 var lstFilms = [
@@ -66,7 +66,7 @@ var lstFilms = [
 const ref_txt_UserDate = document.getElementById("userDate");
 const ref_divAge = document.getElementById("age");
 
-const mostrarEdad = (p_dt_userDate) => {
+const calcularEdad = (p_dt_userDate) => {
     const today = new Date();
     const currentYear = parseInt(today.getFullYear());
     const currentMonth = parseInt(today.getMonth()) + 1;
@@ -85,14 +85,14 @@ const mostrarEdad = (p_dt_userDate) => {
         }
     }
     return age;
-}
+}//usada para hacer el cálculo de la edad en base a fechas
 window.addEventListener('load', function () {
     ref_txt_UserDate.addEventListener('change', function () {
         if (this.value) {
-            ref_divAge.innerText = `¿Tu edad es de ${mostrarEdad(this.value)} años?`
+            ref_divAge.innerText = `¿Tu edad es de ${calcularEdad(this.value)} años?`
         }
     })
-});
+});//usado para ir cambiando el valor de la edad de forma dinámica para que el usuario pueda verificar su edad actual
 
 let btnEdad = document.getElementById('btnEdad');
 btnEdad.addEventListener('click', comprobarEdad);
@@ -139,7 +139,7 @@ const menor18 = () => {
 }
 
 function comprobarEdad() {
-    if (parseInt(mostrarEdad(ref_txt_UserDate.value)) >= 18) {
+    if (parseInt(calcularEdad(ref_txt_UserDate.value)) >= 18) {
         mayor18();
     } else {
         menor18();
