@@ -3,60 +3,184 @@ let valorEntrada = 1000;
 function multiplicar(valor, cantidad) {
     resultado = valor * cantidad
 }
-class film {
-    constructor( name, year, genre, duration){
+
+class contacto {
+    constructor(name, phone, mail) {
         this.name = name;
-        this.year = year;
-        this.genre = genre;
-        this.duration = duration;
+        this.phone = phone;
+        this.mail = mail;        
     }
 }
-const film1 = new film ("Spiderman", 2021, "Acción", 148);
-const film2 = new film ("Animales fantásticos", 2022, "Fantasía", 142);
-const film3 = new film ("Batman", 2022, "Acción", 175 );
-const film4 = new film ("Dr. Strange en el multiverso de la locura",2022,"Acción - Fantasía", 126);
+const contac1 = new contacto("Sucursal Centro", 15555555, "info@cinemajs.com");
+const contac2 = new contacto("Sucursal Norte", 15555559, "infonorte@cinemajs.com");
 
-let userAge = parseInt(prompt('Bienvenid@ a Cinema JS. Por favor ingrese su edad'));
+const infoContacto = () => {
+    let text = document.getElementById('contacto');
+    text.className = 'contacto';
+    text.innerHTML = ` 
+    <h4>Comuniquese con nosotros</h4>
+    <div class="contacto_card">
+        <h5>${contac1.name}</h5>
+        <p>Teléfono:${contac1.phone} - E-mail: ${contac1.mail}</p>
+    </div>
+    <div class="contacto_card">
+        <h5>${contac2.name}</h5>
+        <p>Teléfono:${contac2.phone} - E-mail: ${contac2.mail}</p>
+    </div>
+    `;
+    text.textContent;
+} 
+infoContacto();
 
-if (userAge >= 18) {
-    let text = document.createElement('div');
+var lstFilms = [
+    {
+        "id": "1",
+        "name": "Spiderman",
+        "year": "2021",
+        "genre": "Acción",
+        "duration": "148"
+    },
+    {
+        "id": "2",
+        "name": "Animales fantásticos",
+        "year": "2022",
+        "genre": "Fantasía",
+        "duration": "142"
+    },
+    {
+        "id": "3",
+        "name": "Batman",
+        "year": "2022",
+        "genre": "Acción",
+        "duration": "175"
+    },
+    {
+        "id": "4",
+        "name": "Dr. Strange en el multiverso de la locura",
+        "year": "2022",
+        "genre": "Acción - Fantasía",
+        "duration": "126"
+    }
+];
+
+const ref_txt_UserDate = document.getElementById("userDate");
+const ref_divAge = document.getElementById("age");
+
+const mostrarEdad = (p_dt_userDate) => {
+    const today = new Date();
+    const currentYear = parseInt(today.getFullYear());
+    const currentMonth = parseInt(today.getMonth()) + 1;
+    const currentDay = parseInt(today.getDate());
+
+    const yearOfBirth = parseInt(String(p_dt_userDate).substring(0, 4));
+    const monthOfBirth = parseInt(String(p_dt_userDate).substring(5, 7));
+    const dayOfBirth = parseInt(String(p_dt_userDate).substring(8, 10));
+
+    let age = currentYear - yearOfBirth;
+    if (currentMonth < monthOfBirth) {
+        age--;
+    } else if (currentMonth === monthOfBirth) {
+        if (currentDay < dayOfBirth) {
+            age--;
+        }
+    }
+    return age;
+}
+window.addEventListener('load', function () {
+    ref_txt_UserDate.addEventListener('change', function () {
+        if (this.value) {
+            ref_divAge.innerText = `¿Tu edad es de ${mostrarEdad(this.value)} años?`
+        }
+    })
+});
+
+let btnEdad = document.getElementById('btnEdad');
+btnEdad.addEventListener('click', comprobarEdad);
+
+const mayor18 = () => {
+    let text = document.getElementById('text');
     text.className = 'text';
-    text.innerHTML= `
-    <h2>Compra tus entradas</h2>
-    <p>Elige la película de tu prefencia. Las películas disponibles son:</p>
-    <form>
-        <ol>
-            <li class="peliculas"><input type="radio" name="film_list" id="rFilm1"><label for="rFilm1">${film1.name}</label></li>
-            <li class="peliculas"><input type="radio" name="film_list" id="rFilm2"><label for="rFilm2">${film2.name}</label></li>
-            <li class="peliculas"><input type="radio" name="film_list" id="rFilm3"><label for="rFilm3">${film3.name}</label></li>
-            <li class="peliculas"><input type="radio" name="film_list" id="rFilm4"><label for="rFilm4">${film4.name}</label></li>
-        </ol>
+    var strHtml = `
+        <h2>Compra tus entradas</h2>
+        <p>Elige la película de tu prefencia. Las películas disponibles son:</p>
+        <form>
+        <ol>`;
+    for (let index = 0; index < lstFilms.length; index++) {
+        strHtml += `<li class="peliculas"><input type="radio" name="film_list" id="rFilm${lstFilms[index].id}"><label for="rFilm${lstFilms[index].id}">${lstFilms[index].name}</label></li>`;
+    }
+    strHtml += `</ol>
         <p>El valor de la localidad es de ${valorEntrada}.</p>
         <p>Indique la cantidad de entradas a comprar:</p>
         <input type="number" name="cantidad_entradas" id="numEntradas" min="1">
         <button type="button" id="btnComprar">Comprar</button>
-    </form>     
-    `;
-    document.body.appendChild(text);
-} else {
-    let text = document.createElement('div');
+        </form>
+        <p> Conozca más sobre la cartelera disponible</p>
+        `;
+    text.innerHTML = strHtml;
+    text.textContent;
+
+    document.getElementById("datos").style.display = "none";
+    document.getElementById("btnInfo").style.display = "block";
+
+    let btnComprar = document.getElementById('btnComprar');
+    btnComprar.addEventListener('click', comprarEntradas);
+}
+
+const menor18 = () => {
+    let text = document.getElementById('text');
     text.className = 'text';
-    text.innerHTML= ` 
+    text.innerHTML = ` 
     <h2>Gracias por visitarnos</h2>
     <p>Pide a un adulto que compre la entrada</p>
     `;
-    document.body.appendChild(text);
+    text.textContent;
+
+    document.getElementById("datos").style.display = "none";
 }
-let rFilm1 = document.getElementById('rFilm1');
-let rFilm2 = document.getElementById('rFilm2');
-let rFilm3 = document.getElementById('rFilm3');
-let rFilm4 = document.getElementById('rFilm4');
 
-let cantidadEntradas = (parseInt(document.getElementById('numEntradas').value));
-let btnComprar = document.getElementById('btnComprar');
+function comprobarEdad() {
+    if (parseInt(mostrarEdad(ref_txt_UserDate.value)) >= 18) {
+        mayor18();
+    } else {
+        menor18();
+    }
+}
 
-function anunciarCompra (nombreFilm) {
-    cantidadEntradas = (parseInt(document.getElementById('numEntradas').value));
+function comprarEntradas() {
+    let cantidadEntradas = (parseInt(document.getElementById('numEntradas').value));
+    let rFilm1 = document.getElementById('rFilm1');
+    let rFilm2 = document.getElementById('rFilm2');
+    let rFilm3 = document.getElementById('rFilm3');
+    let rFilm4 = document.getElementById('rFilm4');
+    if (cantidadEntradas = (parseInt(document.getElementById('numEntradas').value)) > 0) {
+        if (rFilm1.checked) {
+            anunciarCompra(lstFilms[0].name);
+        } else if (rFilm2.checked) {
+            anunciarCompra(lstFilms[1].name);
+        } else if (rFilm3.checked) {
+            anunciarCompra(lstFilms[2].name);
+        } else if (rFilm4.checked) {
+            anunciarCompra(lstFilms[3].name);
+        } else {
+            Swal.fire({
+                title: 'Atención',
+                text: 'Por favor seleccione una película.',
+                icon: 'info',
+                confirmButtonText: 'OK',
+            })
+        }
+    } else {
+        Swal.fire({
+            title: 'Atención',
+            text: 'Por favor seleccione la cantidad de entradas.',
+            icon: 'info',
+            confirmButtonText: 'OK',
+        })
+    }
+}
+
+function anunciarCompra(nombreFilm) {
+    let cantidadEntradas = (parseInt(document.getElementById('numEntradas').value));
     multiplicar(valorEntrada, cantidadEntradas);
     Swal.fire({
         text: `El valor total es de ${resultado}. ¿Desea confirmar la compra?`,
@@ -64,8 +188,8 @@ function anunciarCompra (nombreFilm) {
         showCancelButton: true,
         confirmButtonText: 'Sí',
         cancelButtonText: 'No'
-    }).then((result)=>{
-        if(result.isConfirmed){                    
+    }).then((result) => {
+        if (result.isConfirmed) {
             Swal.fire({
                 title: 'Gracias',
                 icon: 'success',
@@ -75,32 +199,25 @@ function anunciarCompra (nombreFilm) {
     })
 }
 
-btnComprar.addEventListener('click', comprarEntradas);
+const url_json = "peliculas.json"
+let count = 0;
 
-function comprarEntradas() {
-    if (cantidadEntradas = (parseInt(document.getElementById('numEntradas').value)) > 0){
-        if (rFilm1.checked) {
-            anunciarCompra(film1.name);
-        } else if (rFilm2.checked) {
-            anunciarCompra(film2.name);
-        } else if (rFilm3.checked) {
-            anunciarCompra(film3.name);
-        } else if (rFilm4.checked) {
-            anunciarCompra(film4.name);
-        } else {
-            Swal.fire({
-                title: 'Atención',
-                text:'Por favor seleccione una película.',
-                icon:'info',                
-                confirmButtonText:'OK',
-            }) 
-        }
-    } else {
-        Swal.fire({
-        title: 'Atención',
-        text:'Por favor seleccione la cantidad de entradas.',
-        icon:'info',                
-        confirmButtonText:'OK',
+$("#btnInfo").click(() => {
+    if (count < 1) {
+        count++;
+        $.getJSON(url_json, function (respuesta, estado) {
+            if (estado === "success") {
+                let datos_peliculas = respuesta.peliculas;
+                for (const dato of datos_peliculas) {
+                    $("#card").prepend(`<div>
+                                        <h4>${dato.name}</h4>
+                                        <p> Año de lanzamiento: ${dato.year}</p>
+                                        <p> Duración en minutos: ${dato.duration}</p>
+                                    </div>`);
+                }
+            } else {
+                console.log("Ocurrio un error inesperado, estado:" + estado);
+            }
         })
     }
-} 
+});
